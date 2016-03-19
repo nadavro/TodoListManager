@@ -15,7 +15,7 @@
         android:id="@+id/txtTodoDueDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/display_name"
-        android:layout_below="@+id/display_name"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_alignLeft="@+id/txtTodoTitle"
+        android:layout_below="@+id/txtTodoTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 </LinearLayout>

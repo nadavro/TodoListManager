@@ -104,7 +104,12 @@ public class MyAdapter extends ArrayAdapter<MyObject>{
             if (dateIsPassed(dateStr)) //check if the date had passed
             {
                 holder.taskDate.setTextColor(Color.RED);
+                holder.task.setTextColor(Color.RED);
 
+            }
+            else {
+                holder.taskDate.setTextColor(Color.BLACK);
+                holder.task.setTextColor(Color.BLACK);
             }
 
         } catch (Exception e) {
