@@ -22,16 +22,15 @@ public class TodoListManagerActivity extends AppCompatActivity {
 
     MyAdapter adapter;
     ListView myList;
+    MySQLiteHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_list_manager);
-
-
+        db =new MySQLiteHelper(this);
         myList= (ListView)findViewById(R.id.lstToDoItems);
-        items = new ArrayList<MyObject>();
-
+        items = db.getAllObj();
         adapter = new MyAdapter(this,0,items);
         myList.setAdapter(adapter);
 
@@ -50,7 +49,11 @@ public class TodoListManagerActivity extends AppCompatActivity {
                             .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface arg0, int arg1) {
+                                    MyObject cur = items.get(position);
                                     adapter.remove(items.get(position));
+                                    db.deleteObj(cur);
+
+
                                     adapter.notifyDataSetChanged();
 
                                 }
@@ -66,7 +69,9 @@ public class TodoListManagerActivity extends AppCompatActivity {
                             .setPositiveButton("delete", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface arg0, int arg1) {
+                                    MyObject cur = items.get(position);
                                     adapter.remove(items.get(position));
+                                    db.deleteObj(cur);
                                     adapter.notifyDataSetChanged();
 
                                 }
@@ -131,6 +136,7 @@ public class TodoListManagerActivity extends AppCompatActivity {
 
                 MyObject obj = new MyObject (myTask,myDate);
                 items.add(obj);
+                db.addObj(obj); // add to DB
                 adapter.notifyDataSetChanged();
 //
             }
